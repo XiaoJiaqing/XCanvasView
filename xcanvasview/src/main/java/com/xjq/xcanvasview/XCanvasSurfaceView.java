@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.xjq.xcanvasview.listen.OnCanvasViewPaintListen;
+
 /**
  * Created by ziv on 2017/7/17.
  */
@@ -14,10 +16,8 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     private SurfaceHolder mHolder;
     private Canvas mCanvas;
     private boolean mIsRunning;
-    private XCanvasView.OnCanvasViewPaintCallback onCanvasViewPaintCallback;
-    public interface OnCanvasViewPaintCallback {
-        void OnCanvasViewPaint(Canvas canvas);
-    }
+    private OnCanvasViewPaintListen onCanvasViewPaintListen;
+
     public XCanvasSurfaceView(Context context) {
         this(context, null);
     }
@@ -55,7 +55,6 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
     @Override
     public void run() {
-        long start = System.currentTimeMillis();
 
         while (mIsRunning) {
             draw();
@@ -67,7 +66,7 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         if (mCanvas != null) {
             try {
                 //使用获得的Canvas做具体的绘制
-                onCanvasViewPaintCallback.OnCanvasViewPaint(mCanvas);
+                onCanvasViewPaintListen.OnCanvasViewPaint(mCanvas);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -76,9 +75,9 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
-    public void setOnCanvasViewPaintCallback(XCanvasView.OnCanvasViewPaintCallback onCanvasViewPaintCallback) {
+    public void setOnCanvasViewPaintCallback(OnCanvasViewPaintListen onCanvasViewPaintListen) {
 
-        this.onCanvasViewPaintCallback = onCanvasViewPaintCallback;
+        this.onCanvasViewPaintListen = onCanvasViewPaintListen;
 
     }
 }

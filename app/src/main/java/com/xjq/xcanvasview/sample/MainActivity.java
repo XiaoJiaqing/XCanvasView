@@ -4,32 +4,34 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.xjq.xcanvasview.XCanvasSurfaceView;
 import com.xjq.xcanvasview.XCanvasView;
+import com.xjq.xcanvasview.listen.OnCanvasViewPaintListen;
 
 import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
-    XCanvasView canvasView;
+
+    XCanvasView canvasView1;
     XCanvasView canvasView2;
-    XCanvasSurfaceView canvasSurfaceView;
+    XCanvasSurfaceView canvasSurfaceView3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        canvasView = (XCanvasView) findViewById(R.id.canvasView);
+        canvasView1 = (XCanvasView) findViewById(R.id.canvasView);
         canvasView2 = (XCanvasView) findViewById(R.id.canvasView2);
-        canvasSurfaceView = (XCanvasSurfaceView) findViewById(R.id.canvasSurfaceView);
+        canvasSurfaceView3 = (XCanvasSurfaceView) findViewById(R.id.canvasSurfaceView);
 
-        canvasView.setOnCanvasViewPaintCallback(new XCanvasView.OnCanvasViewPaintCallback() {
+        canvasView1.setOnCanvasViewPaintListen(new OnCanvasViewPaintListen() {
             @Override
             public void OnCanvasViewPaint(Canvas canvas) {
+
                 Paint paint = new Paint();
                 paint.setColor(Color.BLUE);
                 paint.setStrokeWidth(5);
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        canvasView2.setOnCanvasViewPaintCallback(new XCanvasView.OnCanvasViewPaintCallback() {
+        canvasView2.setOnCanvasViewPaintListen(new OnCanvasViewPaintListen() {
             @Override
             public void OnCanvasViewPaint(Canvas canvas) {
                 Paint paint = new Paint();
@@ -60,17 +62,12 @@ public class MainActivity extends AppCompatActivity {
                     int y = (int) (centerY - Math.sin(rad) * 100);
                     canvas.drawPoint(x, y, paint);
                     x++;
-            /*canvas.drawLine(centerX,centerY,x,y,paint);
-            preX = x;
-            preY = y;
-            * 打开注释，运行代码，会看到意外图形
-            */
                 }
             }
         });
 
 
-        canvasSurfaceView.setOnCanvasViewPaintCallback(new XCanvasView.OnCanvasViewPaintCallback() {
+        canvasSurfaceView3.setOnCanvasViewPaintCallback(new OnCanvasViewPaintListen() {
             @Override
             public void OnCanvasViewPaint(Canvas canvas) {
                 Paint paint = new Paint();

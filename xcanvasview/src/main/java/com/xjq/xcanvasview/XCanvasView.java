@@ -5,17 +5,16 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.xjq.xcanvasview.listen.OnCanvasViewPaintListen;
+
 /**
  * Created by ziv on 2017/7/17.
  */
 
 public class XCanvasView extends View {
 
-    public interface OnCanvasViewPaintCallback {
-        void OnCanvasViewPaint(Canvas canvas);
-    }
 
-    private OnCanvasViewPaintCallback onCanvasViewPaintCallback;
+    private OnCanvasViewPaintListen onCanvasViewPaintListen;
 
     public XCanvasView(Context context) {
         super(context);
@@ -28,12 +27,12 @@ public class XCanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        onCanvasViewPaintCallback.OnCanvasViewPaint(canvas);
+        onCanvasViewPaintListen.OnCanvasViewPaint(canvas);
     }
 
-    public void setOnCanvasViewPaintCallback(OnCanvasViewPaintCallback onCanvasViewPaintCallback) {
+    public void setOnCanvasViewPaintListen(OnCanvasViewPaintListen onCanvasViewPaintListen) {
 
-        this.onCanvasViewPaintCallback = onCanvasViewPaintCallback;
+        this.onCanvasViewPaintListen = onCanvasViewPaintListen;
 
     }
 }
