@@ -66,7 +66,8 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         if (mCanvas != null) {
             try {
                 //使用获得的Canvas做具体的绘制
-                onCanvasViewPaintListen.OnCanvasViewPaint(mCanvas);
+                if (onCanvasViewPaintListen != null)
+                    onCanvasViewPaintListen.OnCanvasViewPaint(mCanvas);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -75,7 +76,7 @@ public class XCanvasSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
-    public void setOnCanvasViewPaintCallback(OnCanvasViewPaintListen onCanvasViewPaintListen) {
+    public void setOnCanvasViewPaintListen(OnCanvasViewPaintListen onCanvasViewPaintListen) {
 
         this.onCanvasViewPaintListen = onCanvasViewPaintListen;
 

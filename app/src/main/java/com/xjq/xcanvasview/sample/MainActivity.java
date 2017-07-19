@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity {
         canvasView1 = (XCanvasView) findViewById(R.id.canvasView);
         canvasView2 = (XCanvasView) findViewById(R.id.canvasView2);
         canvasSurfaceView3 = (XCanvasSurfaceView) findViewById(R.id.canvasSurfaceView);
-
+        //解决SurfaceView设置背景不显示问题
+        //canvasSurfaceView3.setZOrderOnTop(true);
+        //canvasSurfaceView3.getHolder().setFormat(PixelFormat.TRANSLUCENT);
         canvasView1.setOnCanvasViewPaintListen(new OnCanvasViewPaintListen() {
             @Override
             public void OnCanvasViewPaint(Canvas canvas) {
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        canvasSurfaceView3.setOnCanvasViewPaintCallback(new OnCanvasViewPaintListen() {
+        canvasSurfaceView3.setOnCanvasViewPaintListen(new OnCanvasViewPaintListen() {
             @Override
             public void OnCanvasViewPaint(Canvas canvas) {
                 Paint paint = new Paint();
@@ -76,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 paint.setStrokeWidth(5);
                 int width = canvas.getWidth();
                 int height = canvas.getHeight();
-                final int centerY = height / 2;
-                final int centerX = width / 2;
+                int centerY = height / 2;
                 Path path = new Path();
                 path.moveTo(0, height);
                 int x = 0;
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                     paint.setStrokeWidth(5);
                     double rad = x * Math.PI / 180;//角度转换成弧度
                     int y = (int) (centerY - Math.sin(rad) * 100);
-                    //canvas.drawPoint(x, y, paint);
                     path.lineTo(x, y);
                     x++;
                 }

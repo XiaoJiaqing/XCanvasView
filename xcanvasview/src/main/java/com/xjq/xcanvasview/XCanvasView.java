@@ -27,7 +27,8 @@ public class XCanvasView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        onCanvasViewPaintListen.OnCanvasViewPaint(canvas);
+        if (onCanvasViewPaintListen != null)
+            onCanvasViewPaintListen.OnCanvasViewPaint(canvas);
     }
 
     public void setOnCanvasViewPaintListen(OnCanvasViewPaintListen onCanvasViewPaintListen) {
