@@ -5,7 +5,7 @@
 ## 简介
 一般情况，我们要绘制图形的做法是继承View，然后重写其onDraw()方法. XCanvasView可以让我们略过这些繁琐步骤，更加专注于图形绘制算法与逻辑.
 
-
+<div align="center"><img src="https://github.com/XiaoJiaqing/XCanvasView/blob/master/screenshots/sample.png" width="300px" /></div>
 
 ## Download
 打开项目根目录下的build.gradle，添加以下内容：
@@ -16,7 +16,7 @@
        	...
        	maven { url 'https://jitpack.io' }
     }
-	}
+    }
   
   
 打开APP的build.gradle，添加以下内容：
@@ -28,7 +28,7 @@
 	
 	
 ## 用法
-一般情况下使用XCanvasView即可，如果需要绘制的图形比较复杂，耗时较长，可以使用 XCanvasSurfaceView
+一般情况下使用XCanvasView即可，如果需要绘制的图形比较复杂，耗时较长，可以使用 XCanvasSurfaceView. 其用法和XCanvasView类似.
 
    
     <com.xjq.xcanvasview.XCanvasView
